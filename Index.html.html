@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Fashion</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #fff5f7; color: #333; transition: 0.3s; }
+        body.dark-mode { background: #1a1a1a; color: #e0e0e0; }
+        .navbar { background: #ff61dd; padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .navbar-brand { display: flex; align-items: center; }
+        .logo { width: 40px; height: 40px; margin-right: 10px; }
+        .brand-name { font-size: 1.5rem; font-weight: 700; color: #fff; }
+        .nav-link, .dropdown-item { color: #fff !important; font-weight: 500; padding: 10px 15px !important; transition: 0.3s; }
+        .nav-link:hover, .dropdown-item:hover { background: #e289c1; border-radius: 5px; }
+        .nav-link.active, .dropdown-item.active { background: #ff2ece !important; border-radius: 5px; }
+        .dropdown-menu { background: #ed63df; border: none; }
+        .toggle-dark-mode { background: none; border: none; color: #fff; font-size: 1.2rem; padding: 5px 10px; }
+        .hero-section { height: 100vh; background: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2080&auto=format&fit=crop') center/cover; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero-overlay { background: rgba(0,0,0,0.5); padding: 30px; border-radius: 10px; }
+        .hero-section h1 { font-size: 3.5rem; font-weight: 700; color: #fff; margin-bottom: 20px; }
+        .hero-section p { font-size: 1.2rem; color: #ddd; margin-bottom: 30px; }
+        .hero-section .btn-primary { background: #f571f0; border: none; padding: 12px 30px; font-size: 1.1rem; }
+        .hero-section .btn-primary:hover { background: #f45ce4; }
+        .section-title { font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 40px; color: #f771df; }
+        .product-card { background: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 15px; text-align: center; }
+        .product-name { font-size: 1.3rem; font-weight: 600; margin: 15px 0 10px; color: #e356d1; }
+        .product-price { font-size: 1.1rem; font-weight: 600; color: #ff2ed2; margin-bottom: 15px; }
+        .buy-btn { background: #ff61ea; border: none; padding: 10px 20px; color: #fff; border-radius: 5px; }
+        .buy-btn:hover { background: #ff2eb9; }
+        .product-image { width: 100%; height: 250px; object-fit: cover; border-radius: 10px 10px 0 0; }
+        .about-us img { max-width: 100%; max-height: 300px; }
+        .footer-section { background: #fe6fe4; color: #fff; padding: 40px 0; }
+        .footer-logo { font-size: 1.8rem; font-weight: 700; }
+        .footer-section h5 { font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; }
+        .footer-section ul li a { color: #fff; text-decoration: none; }
+        .footer-section ul li a:hover { color: #e35bac; }
+        .social-icons a { background: #f084d9; color: #fff; padding: 8px; border-radius: 50%; margin-right: 10px; }
+        .social-icons a:hover { background: #f63fb6; }
+        .account-section .nav-tabs { border-bottom: 2px solid #ff61dd; }
+        .account-section .nav-link { color: #ff61dd; font-weight: 600; }
+        .account-section .nav-link.active { background: #ff61dd; color: #fff; border-radius: 5px 5px 0 0; }
+        .account-section .tab-content { background: #fff; padding: 20px; border-radius: 0 0 10px 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .account-section .btn-primary { background: #ff61dd; border: none; }
+        .account-section .btn-primary:hover { background: #ff2ece; }
+        /* Cart Section */
+        .cart-section { padding: 40px 0; background: #f9f9f9; }
+        .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        .cart-table th, .cart-table td { padding: 15px; text-align: center; border-bottom: 1px solid #ddd; }
+        .cart-table th { background: #ff61dd; color: #fff; font-weight: 600; }
+        .cart-table img { width: 80px; height: 80px; object-fit: cover; border-radius: 5px; }
+        .cart-table .quantity-btn { background: #ff61ea; border: none; color: #fff; padding: 5px 10px; border-radius: 5px; }
+        .cart-table .quantity-btn:hover { background: #ff2eb9; }
+        .cart-total { text-align: right; font-size: 1.5rem; font-weight: 600; color: #ff2ed2; }
+        .checkout-btn { background: #ff61dd; border: none; padding: 12px 30px; color: #fff; border-radius: 5px; font-size: 1.1rem; }
+        .checkout-btn:hover { background: #ff2ece; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#index">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyNjTriDJSNHUrdnyqHluCbZk5O8mdLDDP2w&s" alt="Logo" class="logo">
+                <span class="brand-name">Women's Fashion</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#index" data-page="index"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#products" data-bs-toggle="dropdown"><i class="fas fa-tshirt"></i> Products</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#products" data-page="products"><i class="fas fa-list"></i> All Products</a></li>
+                            <li><a class="dropdown-item" href="#dresses" data-page="dresses"><i class="fas fa-female"></i> Dresses</a></li>
+                            <li><a class="dropdown-item" href="#skirts" data-page="skirts"><i class="fas fa-socks"></i> Skirts</a></li>
+                            <li><a class="dropdown-item" href="#shoes" data-page="shoes"><i class="fas fa-shoe-prints"></i> Shoes</a></li>
+                            <li><a class="dropdown-item" href="#accessories" data-page="accessories"><i class="fas fa-glasses"></i> Accessories</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" data-page="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cart" data-page="cart"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#account" data-page="account"><i class="fas fa-user"></i> Account</a></li>
+                    <li class="nav-item"><button class="toggle-dark-mode" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <section id="index-page" class="page-section">
+            <div class="hero-section">
+                <div class="hero-overlay">
+                    <h1>Welcome to Women's Fashion</h1>
+                    <p>Discover elegant and modern women's fashion!</p>
+                    <a href="#products" class="btn btn-primary" data-page="products">View Products</a>
+                </div>
+            </div>
+            <section class="about-us py-5">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">About Women's Fashion</h2>
+                    <div class="row align-items-center">
+                        <div class="col-md-6" data-aos="fade-right">
+                            <p>Women's Fashion - Premium women's fashion since 2018, offering elegant, feminine, and modern designs.</p>
+                        </div>
+                        <div class="col-md-6" data-aos="fade-left">
+                            <img src="https://png.pngtree.com/thumb_back/fh260/background/20190221/ourmid/pngtree-clothing-girl-fashion-snatch-image_16573.jpg" alt="About" class="img-fluid rounded shadow">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section id="products-page" class="page-section" style="display:none;">
+            <div class="products-section py-5 bg-light">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">All Products</h2>
+                    <div class="row" id="product-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dresses-page" class="page-section" style="display:none;">
+            <div class="products-section py-5 bg-light">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">Dresses</h2>
+                    <div class="row" id="dresses-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skirts-page" class="page-section" style="display:none;">
+            <div class="products-section py-5 bg-light">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">Skirts</h2>
+                    <div class="row" id="skirts-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="shoes-page" class="page-section" style="display:none;">
+            <div class="products-section py-5 bg-light">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">Shoes</h2>
+                    <div class="row" id="shoes-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="accessories-page" class="page-section" style="display:none;">
+            <div class="products-section py-5 bg-light">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">Accessories</h2>
+                    <div class="row" id="accessories-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-page" class="page-section" style="display:none;">
+            <div class="contact-section py-5">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">Contact</h2>
+                    <form id="contact-form" class="col-md-6 mx-auto">
+                        <div class="mb-3"><label class="form-label">Full Name:</label><input type="text" class="form-control" required></div>
+                        <div class="mb-3"><label class="form-label">Email:</label><input type="email" class="form-control" required></div>
+                        <div class="mb-3"><label class="form-label">Message:</label><textarea class="form-control" rows="5" required></textarea></div>
+                        <button type="submit" class="btn btn-primary w-100">Send</button>
+                    </form>
+                    <div class="row mt-5 text-center">
+                        <div class="col-md-4"><p><i class="fas fa-phone"></i> 0981-564-7077</p></div>
+                        <div class="col-md-4"><p><i class="fas fa-envelope"></i> support@womensfashion.com</p></div>
+                        <div class="col-md-4"><p><i class="fas fa-map-marker-alt"></i> To Ky, District 12, HCMC</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cart-page" class="page-section" style="display:none;">
+            <div class="cart-section">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">Cart</h2>
+                    <div id="cart-content">
+                        <table class="cart-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cart-items"></tbody>
+                        </table>
+                        <div class="cart-total" id="cart-total">Total: 0 ₫</div>
+                        <div class="text-end mt-4">
+                            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="account-page" class="page-section" style="display:none;">
+            <div class="account-section py-5">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">Account</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <ul class="nav nav-tabs mb-4" id="accountTabs">
+                                <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#login">Login</button></li>
+                                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#register">Register</button></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="login">
+                                    <form id="login-form">
+                                        <div class="mb-3 input-group"><span class="input-group-text"><i class="fas fa-user"></i></span><input type="text" class="form-control" placeholder="Username" required></div>
+                                        <div class="mb-3 input-group"><span class="input-group-text"><i class="fas fa-lock"></i></span><input type="password" class="form-control" placeholder="Password" required></div>
+                                        <button type="button" class="btn btn-primary w-100" onclick="login()">Login</button>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="register">
+                                    <form id="register-form">
+                                        <div class="mb-3 input-group"><span class="input-group-text"><i class="fas fa-user"></i></span><input type="text" class="form-control" placeholder="Username" required></div>
+                                        <div class="mb-3 input-group"><span class="input-group-text"><i class="fas fa-envelope"></i></span><input type="email" class="form-control" placeholder="Email" required></div>
+                                        <div class="mb-3 input-group"><span class="input-group-text"><i class="fas fa-phone"></i></span><input type="tel" class="form-control" placeholder="Phone Number" required></div>
+                                        <div class="mb-3 input-group"><span class="input-group-text"><i class="fas fa-lock"></i></span><input type="password" class="form-control" placeholder="Password" required></div>
+                                        <button type="button" class="btn btn-primary w-100" onclick="register()">Register</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section py-5">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-3" data-aos="fade-up"><i class="fa fa-truck fa-3x mb-3"></i><h5>Free Delivery</h5><p>Free on all orders</p></div>
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="100"><i class="fa fa-credit-card fa-3x mb-3"></i><h5>Secure Payment</h5><p>100% secure</p></div>
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="200"><i class="fa fa-money-bill-wave fa-3x mb-3"></i><h5>Money Back</h5><p>30-day guarantee</p></div>
+                    <div class="col-md-3" data-aos="fade-up" data-aos-delay="300"><i class="fa fa-headset fa-3x mb-3"></i><h5>24/7 Support</h5><p>Always here</p></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <h3 class="footer-logo">Women's Fashion</h3>
+                    <p>Elegant and modern women's fashion.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <h5>Information</h5>
+                    <ul class="list-unstyled"><li><a href="#">About</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <h5>Categories</h5>
+                    <ul class="list-unstyled"><li><a href="#">Dresses</a></li><li><a href="#">Skirts</a></li><li><a href="#">Shoes & Accessories</a></li></ul>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <h5>Support</h5>
+                    <ul class="list-unstyled"><li><a href="#">Guide</a></li><li><a href="#">Returns</a></li><li><a href="#">Contact</a></li></ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Contact</h5>
+                    <p><i class="fas fa-phone"></i> 0987-654-321</p>
+                    <p><i class="fas fa-envelope"></i> support@womensfashion.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> To Ky, District 12, HCMC</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        function toggleDarkMode() { document.body.classList.toggle("dark-mode"); }
+
+        const products = [
+            { id: 1, name: "Maxi Floral Dress", image: "https://damvay.com.vn/wp-content/uploads/2023/10/2_3f68f45c7b1b43188df5888e8fc94c45_master.jpg", desc: "Light and feminine.", price: 550000, category: "dresses" },
+            { id: 2, name: "Office Dress", image: "https://product.hstatic.net/1000392326/product/fas73553_-_858k____fjd71083_-_788k__2__f5491d0fc3aa44489208a63d20e8a481_1024x1024.jpg", desc: "Elegant and premium.", price: 650000, category: "dresses" },
+            { id: 3, name: "Pencil Skirt", image: "https://js0fpsb45jobj.vcdn.cloud/storage/upload/media/gumac3/ve01047/3-xam-ve01047.jpg", desc: "Fitted, office style.", price: 350000, category: "skirts" },
+            { id: 4, name: "High Heels", image: "https://img.mwc.com.vn/giay-thoi-trang?w=1150&h=0&FileInput=/Resources/Product/2023/10/25/z4814652297950_5aece0dea8810b98ea5afaa638ec8568.jpg", desc: "Luxurious, 7cm.", price: 800000, category: "shoes" },
+            { id: 5, name: "Mini Handbag", image: "https://bizweb.dktcdn.net/thumb/large/100/443/377/products/san-pham-web-2023-12-10t144953-273-1702194887948.jpg?v=1702194892220", desc: "Modern and compact.", price: 450000, category: "accessories" }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); }
+        function formatPrice(price) { return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }); }
+
+        function displayProducts(category, containerId) {
+            const productList = document.getElementById(containerId);
+            productList.innerHTML = "";
+            const filtered = category ? products.filter(p => p.category === category) : products;
+            filtered.forEach(p => {
+                productList.innerHTML += `
+                    <div class="col-md-4 col-sm-6 mb-4" data-aos="fade-up">
+                        <div class="product-card">
+                            <img src="${p.image}" alt="${p.name}" class="product-image">
+                            <h3 class="product-name">${p.name}</h3>
+                            <p class="product-desc">${p.desc}</p>
+                            <p class="product-price">Price: ${formatPrice(p.price)}</p>
+                            <button class="buy-btn" data-id="${p.id}">Buy Now</button>
+                        </div>
+                    </div>`;
+            });
+            document.querySelectorAll(".buy-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const id = parseInt(btn.getAttribute("data-id"));
+                    const item = cart.find(i => i.id === id);
+                    if (item) item.quantity++; else cart.push({ id, quantity: 1 });
+                    saveCart();
+                    alert("Added to cart!");
+                    if (window.location.hash === "#cart") displayCart();
+                });
+            });
+        }
+
+        function displayCart() {
+            const cartItems = document.getElementById("cart-items");
+            const cartTotal = document.getElementById("cart-total");
+            if (cart.length === 0) {
+                cartItems.innerHTML = `<tr><td colspan="6">Cart is empty.</td></tr>`;
+                cartTotal.textContent = "Total: 0 ₫";
+                return;
+            }
+            cartItems.innerHTML = cart.map(item => {
+                const p = products.find(p => p.id === item.id);
+                if (!p) return '';
+                const total = p.price * item.quantity;
+                return `
+                    <tr>
+                        <td><img src="${p.image}" alt="${p.name}"></td>
+                        <td>${p.name}</td>
+                        <td>${formatPrice(p.price)}</td>
+                        <td>
+                            <button class="quantity-btn" onclick="updateQuantity(${p.id}, -1)">-</button>
+                            ${item.quantity}
+                            <button class="quantity-btn" onclick="updateQuantity(${p.id}, 1)">+</button>
+                        </td>
+                        <td>${formatPrice(total)}</td>
+                        <td><button class="btn btn-danger btn-sm" onclick="removeFromCart(${p.id})">Remove</button></td>
+                    </tr>`;
+            }).join('');
+            cartTotal.textContent = `Total: ${formatPrice(cart.reduce((sum, item) => sum + (products.find(p => p.id === item.id)?.price * item.quantity || 0), 0))}`;
+        }
+
+        function updateQuantity(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) cart = cart.filter(i => i.id !== id);
+                saveCart();
+                displayCart();
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCart();
+            displayCart();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Cart is empty!");
+                return;
+            }
+            alert("Checkout successful! Your order has been processed.");
+            cart = [];
+            saveCart();
+            displayCart();
+        }
+
+        function login() {
+            const username = document.getElementById("login-username")?.value;
+            const password = document.getElementById("login-password")?.value;
+            const user = JSON.parse(localStorage.getItem("user"));
+            if (!user) {
+                alert("Not registered! Please register.");
+                document.getElementById("register-tab")?.click();
+                return;
+            }
+            if (user.username !== username || user.password !== password) {
+                alert("Incorrect login information!");
+                return;
+            }
+            alert("Login successful!");
+        }
+
+        function register() {
+            const username = document.getElementById("register-username")?.value;
+            const email = document.getElementById("register-email")?.value;
+            const phone = document.getElementById("register-phone")?.value;
+            const password = document.getElementById("register-password")?.value;
+            if (!username || !email || !phone || !password) {
+                alert("Please fill in all information!");
+                return;
+            }
+            localStorage.setItem("user", JSON.stringify({ username, email, phone, password }));
+            alert("Registration successful!");
+            document.getElementById("login-tab")?.click();
+        }
+
+        function loadPage(page) {
+            document.querySelectorAll(".page-section").forEach(p => p.style.display = "none");
+            const target = document.getElementById(`${page}-page`);
+            if (target) target.style.display = "block";
+            document.querySelectorAll(".nav-link, .dropdown-item").forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${page}`) link.classList.add("active");
+            });
+            if (page === "products") displayProducts(null, "product-list");
+            else if (page === "dresses") displayProducts("dresses", "dresses-list");
+            else if (page === "skirts") displayProducts("skirts", "skirts-list");
+            else if (page === "shoes") displayProducts("shoes", "shoes-list");
+            else if (page === "accessories") displayProducts("accessories", "accessories-list");
+            else if (page === "cart") displayCart();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        document.querySelectorAll(".nav-link, .dropdown-item").forEach(link => {
+            link.addEventListener("click", (e) => {
+                if (link.getAttribute("href").startsWith("#")) {
+                    e.preventDefault();
+                    const page = link.getAttribute("data-page");
+                    if (page) {
+                        loadPage(page);
+                        window.history.pushState({ page }, "", `#${page}`);
+                    }
+                }
+            });
+        });
+
+        window.addEventListener("popstate", (e) => loadPage(e.state?.page || "index"));
+        window.onload = () => loadPage(window.location.hash.replace("#", "") || "index");
+    </script>
+</body>
+</html>
